@@ -4,7 +4,7 @@ const cors = require("cors")
 const Router = require("./routes/router.js");
 const connectDb = require("./db/connectDB.js");
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 
 app.use(express.json());
@@ -16,9 +16,10 @@ app.use(helmet());
 // cors
 app.use(cors());
 
-//
+// Api calls
 app.use("/api", Router);
 
+// Server will be started only if database is connected 
 connectDb().then(() => {
    try {
       app.listen(port, () => {
