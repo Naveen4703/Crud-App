@@ -1,7 +1,7 @@
 {
   "name": "crudapp",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a CRUD application project on student data using mongodb",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

@@ -1,4 +1,4 @@
-const Student = require("../models/studentSchema.js")
+const Student = require("../models/studentSchema.js");
 
 const getStudents = async(req,res) => {
     try{
@@ -85,7 +85,7 @@ const updateStudent = async(req,res) => {
         }
         res.status(200).json({Response : "Data deleted successfully"});
     } catch (err) {
-        res.status(400).json({Response : `Unable to delete student data due to ${err}`})
+        res.status(400).json({Response : `Unable to delete student data due to ${err}`});
     }
  }
 
@@ -95,4 +95,4 @@ const updateStudent = async(req,res) => {
     updateStudent,
     deleteStudent,
     getStudentById
- }
+ };
