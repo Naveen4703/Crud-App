@@ -4,7 +4,7 @@ const getStudents = async(req,res) => {
     try{
         const students = await Student.find();
         if(students.length == 0){
-            res.status(400);
+            res.status(404);
             throw new Error("No student data in database !");
         }
         res.status(200).json({Response : students});
@@ -20,13 +20,13 @@ const getStudentById = async (req,res) => {
         const id = req.params.id;
         const student = await Student.findOne({ studentId: id });
         if(student == null){
-            res.status(400);
+            res.status(404);
             throw new Error("Student not found in database !");
         }
         res.status(201).json({ response : student});
        // console.log(student);
     } catch (err) {
-        res.status(400);
+        res.status(404);
         res.json({ Response : `${err}`} );
     }
 }
@@ -55,13 +55,13 @@ try{
 const updateStudent = async(req,res) => {
     const id = req.query.id;
     if(!id){
-        res.status(400);
+        res.status(404);
         throw new Error("Please add a valid student id");
     }
     try {
         const updateStudent = await Student.updateOne({ studentId : id }, req.body);
         if(updateStudent.matchedCount == 0){
-            res.status(400);
+            res.status(404);
             throw new Error("student id not found");
         }
         res.status(200).json({Response : "Data updated successfully"});
@@ -74,13 +74,13 @@ const updateStudent = async(req,res) => {
  const deleteStudent = async(req,res) => {
     const id = req.query.id;
     if(!id){
-        res.status(400);
+        res.status(404);
         throw new Error("Please add a valid student id");
     }
     try{
         const deleteStudent = await Student.deleteOne({ studentId : id });
         if(deleteStudent.deletedCount == 0){
-            res.status(400);
+            res.status(404);
             throw new Error("student id not found");
         }
         res.status(200).json({Response : "Data deleted successfully"});
